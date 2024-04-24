@@ -1,0 +1,28 @@
+---
+title: "Untitled"
+author: "Manh"
+date: "2024-02-29"
+output:
+  pdf_document: default
+  word_document: default
+  html_document: default
+---
+
+```{r}
+setwd("D:\\Datasets")
+dat <- read.csv("Product.csv")
+dat1 <- subset(dat$Product,dat$City=="Boston") #mat hang ban tai boston
+
+carrot <- sum(dat$TotalPrice,dat$Product=="Carrot") #tong loi nhuan carrot
+carrot
+car <- subset(dat$TotalPrice,dat$Product=="Carrot",dat$City=="Boston")# loi nhuan carrot tp Boston
+mcarrot <- sum(car)/length(car) #carrot tb o boston
+mcarrot
+#carrot nuoc Mi
+Acar <- subset(dat$Quantity,dat$Product=="Carrot")
+Acar <- sort(Acar)
+print(Acar[length(Acar)])
+
+
+
+```

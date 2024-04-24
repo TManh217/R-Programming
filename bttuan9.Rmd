@@ -1,0 +1,29 @@
+---
+title: "Untitled"
+author: "LeTienManh_23001535"
+date: "2024-04-04"
+output: html_document
+---
+```{r}
+#a
+len<- c(178,179,180,181,182)
+qualtity <-c(12,18,35,20,15)
+# for i in length(len){
+#   tmp <- rep(len[i],qualtity[i])
+#   t <- c(t,tmp)
+# }
+dl <-  rep(len,qualtity)
+x1 = mean(dl)
+s1 = sum((dl-x1)^2)
+s1
+s= sqrt(s1)
+check = function(m){
+  if (m >= x1-1.96*s/sqrt(length(dl)) & m <= x1+1.96*s/sqrt(length(dl))){
+    print(paste0(m," co the dai dien cho kich thuoc ong"))
+  } else print(paste0(m,"nhot"))
+}
+check(180.5)
+check(180)
+check(185)
+
+```

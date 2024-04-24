@@ -1,0 +1,37 @@
+---
+title: "Untitled"
+author: "LeTienManh_23001535"
+date: "2024-04-11"
+output: html_document
+---
+bai2
+```{r}
+g1 <- function(x,lambda){
+  res = lambda*exp(-lambda*x)
+  return(res)
+}
+f <- function(x){
+  return(exp(-x^2/2))
+}
+
+n=10
+lambda = 2
+y = c(1:n)
+M = exp(lambda^2/2)/lambda
+system.time({
+  for (i in 1:n) {
+    stop <- FALSE
+    while (!stop) {
+    u <- runif(1, 0, 1)
+    x <- g(1,lambda)
+    
+if (u <= f(x) / (M*g1(x,lambda)) {
+stop <- TRUE
+}
+}
+todo
+}
+})
+hist(y)
+
+```

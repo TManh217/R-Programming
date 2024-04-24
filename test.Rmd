@@ -1,0 +1,15 @@
+---
+title: "Tim nghiem vector"
+output: html_document
+date: "2024-02-22"
+---
+```{r}
+age <- c(50,62,60,40,48,50,47,57,70)
+isulin <-c(16.5,10.8,32.3,19.3,14.2,11.3,15.5,16,17)
+data <- data.frame(age,isulin)
+data
+plot(age, isulin)
+setwd("D:/Datasets")
+customer=read.csv("dulieu2.csv",header=TRUE)
+customer
+```

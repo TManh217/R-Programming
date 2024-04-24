@@ -1,0 +1,53 @@
+---
+title: 'Bai1 Tuan2 '
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+date: "2024-02-22"
+---
+```{r}
+n <- 535
+ID <- sort(sample(100:1000,n,replace=F))
+dtx <-c(sample(seq(6,10,0.5),n,replace=T))
+dgk <-c(sample(seq(4,10,0.5),n,replace=T))
+dcc <-c(sample(seq(0,10,0.5),n,replace=T))
+
+diem=data.frame(ID,dtx,dgk,dcc)
+diem$dtb <- 0.6*diem$dcc+0.2*diem$dgk+0.2*diem$dtx
+diem$c =replace(diem$c, diem$dtb >= 9, "A+")
+diem$c =replace(diem$c, diem$dtb >= 8.5 & diem$dtb <9 , "A")
+diem$c =replace(diem$c, diem$dtb <8.5, "B")
+#diem$c <-factor(diem$dtb,levels=c(), labels=c("B","A","A+") )
+diem
+View(diem)
+```
+```{r}
+data(mtcars)
+df <- mtcars
+df$trans <- factor(df$am, levels=c(0,1), labels=c("Automatic","Manual"))
+df$trans2 <- df$am
+df$trans2 <- replace(df$trans2, df$trans2==1,"Manual")
+df$trans2 <- replace (df$trans2, df$trans2==0, "Automatic")
+car=data.frame(df$am,df$trans,df$trans2)
+car
+
+```
+```{r}
+library(MASS)
+data(Boston)
+dim(Boston)
+data=Boston
+data1=data.frame(data$age,data$medv)
+plot(data$age,data$medv,main="Nha O",xlab="Age",ylab="Dis",col="blue")
+```
+```{r}
+age <- c(50,62,60,40,48,50,47,57,70)
+isulin <-c(16.5,10.8,32.3,19.3,14.2,11.3,15.5,16,17)
+data <- data.frame(age,isulin)
+data
+plot(age, isulin)
+setwd("D:/Datasets")
+customer=read.csv("dulieu2.csv",header=TRUE)
+customer
+```

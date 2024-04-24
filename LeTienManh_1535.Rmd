@@ -1,0 +1,41 @@
+---
+title: "Who1"
+author: "Le_Tien_Manh_23001535"
+date: "2024-03-07"
+output:
+  html_document: default
+  word_document: default
+---
+a. nhap du lieu who1 ten la who
+```{r}
+setwd("D:\\Datasets")
+who <- read.csv("WHO1.csv")
+```
+b.xuly cac dl trong bang cach them gtri trung binh cua cot ten la who1
+```{r}
+who1<- who
+# nal <- which(is.na(who$LiteracyRate))
+# nag <- which(is.na(who$GNI))
+# naf <- which(is.na(who$FertilityRate))
+# dtpro(nal,who1$LiteracyRate)
+# dtpro(nag,who1$GNI)
+# dtpro(naf,who1$FertilityRate)
+
+dtpro <- function(n,field){
+  print("Im in")
+  a = mean(field,na.rm = T)
+  print(a)
+  field[n] = a
+  return (field)
+}
+fn <- subset(who1,who1$Country== "")
+ff <- c(fn)
+#fn[1]
+for (j in names(who1)){
+  c <- which(is.na(who1[[j]]))
+    who1[[j]][c] = dtpro(c,who[[j]])
+  
+}
+colSums(is.na(who1))
+```
+c.xuly cac dl trong bang = them gtri random ten la who2

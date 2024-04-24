@@ -1,0 +1,89 @@
+---
+title: "Untitled"
+author: "LeTienManh_23001535"
+date: "2024-04-11"
+output:
+  word_document: default
+  html_document: default
+---
+```{r}
+#a Sinh ra ngẫu nhiên U có phân phối đều trên đoạn (0;1)
+n=1000
+lambda=1
+u <- runif(n, 0, 1)
+#b
+x <- -log(1 - u)/lambda
+#c
+U <- runif(n, 0,1)
+x<- -log(1-U)/lambda
+par(c(1,2))
+#d
+y = rexp(n, lambda)
+library(ggplot2)
+# Tạo dataframe từ dữ liệu x
+data <- data.frame(x = y)
+# Vẽ biểu đồ
+ggplot(data, aes(x = x)) +
+geom_histogram(aes(y = ..density..),
+bins = 30, fill = "skyblue", color = "black", alpha = 0.8) +
+geom_density(color = "red", size = 1) +
+labs(title = "Histogram và Density Plot của x",
+x = "x",
+y = "Density") + theme_minimal()
+
+#e 
+y1 = x
+library(ggplot2)
+# Tạo dataframe từ dữ liệu x
+data <- data.frame(x = y1)
+# Vẽ biểu đồ
+ggplot(data, aes(x = x)) +
+geom_histogram(aes(y = ..density..),
+bins = 30, fill = "skyblue", color = "black", alpha = 0.8) +
+geom_density(color = "red", size = 1) +
+labs(title = "Histogram và Density Plot của x",
+x = "x",
+y = "Density") + theme_minimal()
+
+
+
+
+#g
+g = function(n, lambda){
+   u <- runif(n, 0, 1)
+  x <- -log(1-u)/lambda
+  return (x)
+}
+g(10,2)
+
+f=function(x){
+  return(exp(-x^2/2))
+}
+g1=function(x, lambda){
+  return(lambda*exp(-lambda*x))
+}
+#cau2
+
+#a
+n = 1000
+lambda = 2
+y = 1:n
+M <- 1/lambda * exp(lambda*lambda/2)
+
+system.time({
+for (i in 1:length(y)) {
+  stop <- FALSE
+  while (!stop) {
+    u <- runif(1, 0, 1)
+    
+    x <- g(1,lambda)
+  if (u <= f(x)/(M*g1(x,lambda))) {
+    stop <- TRUE
+  }
+}
+y[i]=x
+}
+})
+summary(y)
+hist(y)
+```

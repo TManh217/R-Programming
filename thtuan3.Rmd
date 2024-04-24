@@ -1,0 +1,43 @@
+---
+title: "Untitled"
+author: "Manh"
+date: "2024-02-29"
+output:
+  pdf_document: default
+  html_document: default
+---
+```{r}
+n=234
+set.seed(111)
+id <- sample(seq(1000,2345,1),234,replace= F)
+id <- sort(id)
+gt <- c("Male","Female")
+gender <- sample(gt,234,replace=T)
+weight <- sample(40:80,234,replace=T)
+height <- round(rnorm(234,165,10),1)
+year <- sample(1999:2005,n,replace=T)
+dtx <- sample(seq(0,10,0.5),n,replace=T)
+dgk <- sample(seq(4,10,0.5),n,replace=T)
+dck <- sample(seq(0,10,0.5),n,replace=T)
+sv <- data.frame(id,gender,year,weight,height,dtx,dgk,dck)
+sv$n_hoc <-rpois(n,3)
+sv$tx2 <- sv$dtx - sv$n_hoc*0.5
+sv$tx2[sv$tx2 <0] <-0
+sv$len_bang <- rpois(n,5)
+sv$gk2 <- sv$dgk + sv$len_bang*0.5
+sv$tx2[sv$gk2 > 10] <- sv$tx2+1
+sv$tx2[sv$tx2 >10 ] <-10
+sv$gk2[sv$gk2 >10] <-10
+sv$dtb <- 0.6*sv$dck +0.2*sv$tx2 +0.2 * sv$gk2
+sv10 <- subset(sv, sv$dck ==10 )
+sv10
+f = sum(sv$dtb>8)/length(sv$dtb)
+#i
+ck <- -0.12*sv$n_hoc + 5.61
+#j
+mse <- mean(sv$dck- ck)^2
+print(mse)
+
+
+
+```

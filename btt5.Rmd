@@ -1,0 +1,66 @@
+---
+title: "THTuan5"
+author: "Le Tien Manh_23001535"
+date: "2024-03-05"
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
+---
+
+a. Nhap du lieu vao R va bo dl trong
+b. trich ra dl "Goverment" va "Midmarket"
+```{r}
+setwd("D:\\Datasets")
+dat <- read.csv("dulieu2.csv")
+dat <- na.omit(dat)
+data1 <- subset(dat , dat$Segment == "Government")
+data2 <- subset (dat, dat$Segment == "Midmarket")
+#c. lap bang tan so cho mat hang Product
+pro <- prop.table(table(dat$Product))
+#d. Tinh Gross Sales tung product.
+data3 <- subset(dat, dat$Product == "Amarilla")
+data4 <- unique(dat$Product)
+a <- c()
+for (i in data4 ){
+  a <- c(a,sum(dat$Gross.Sales, dat$Product == i))
+}
+b <- data.frame (row.names = data4 ,a)
+b
+#e. Kiểm tra sản phẩm “VTT” được bán tại “Mexico” vào tháng và năm nào?
+e <- subset(dat, dat$Product=="VTT")
+dfe <- data.frame(e$Date,e$Month.Name,e$Year)
+
+#f. Viết một hàm để kiểm tra thông tin về ngày tháng bán hàng của một mặt hàng
+#được bán tại một quốc gia nào đó?
+check <- function(mathang){
+  df <- subset(dat, dat$Product == mathang)
+  dff <- data.frame(df$Date,df$Month.Name,df$Year)
+  dff
+}
+check("Amarilla")
+```
+Bài 2:
+Từ dữ liệu “WHO1”, ta có mức thu nhập quốc dân (GNI) của 195 quốc gia. Với
+những quốc gia có GNI lớn hơn 20 nghìn ta xét vào nhóm quốc gia phát triển,
+những quốc gia có GNI nằm trong khoảng từ 10 – 20 nghìn được xếp vào nhóm
+quốc gia đang phát triển, các nước có GNI nhỏ hơn 10000 được xếp vào nhóm
+các quốc gia chưa phát triển, còn lại là các quốc gia khác. Sử dụng R và làm các
+câu hỏi sau: 
+a. Nhập dữ liệu “WHO1” và R và loại bỏ các dữ liệu trống.
+```{r}
+setwd("D:\\Datasets")
+who <- read.csv("WHO1.csv")
+who1 <- who
+#dim(who)
+who <- na.omit(who)
+#dim(who)
+
+```
+c. Hãy cho biết tỷ lệ sinh sản của nước “Canada”.
+```{r}
+#who$r <- who$FertilityRate
+who1$FertilityRate[who1$Country == "Canada"]
+
+
+```
